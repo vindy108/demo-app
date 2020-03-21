@@ -1,8 +1,15 @@
 import { Component } from '@angular/core';
+import { preserveWhitespacesDefault } from '@angular/compiler';
 
 @Component({
     selector : 'app-server',
-    templateUrl : './server.component.html'
+    templateUrl : './server.component.html',
+    styles : [`
+        .online{
+            color: white;
+        }
+    `]
+ 
 })
 
 export class ServerComponent {
@@ -11,6 +18,7 @@ export class ServerComponent {
     serverStatus:string = 'Online';
     serverName='Linux';
     serverCondition = false;
+    servers = ['Test,Test2'];
 
     getServerStatus(){
       return this.serverStatus;
@@ -20,7 +28,7 @@ export class ServerComponent {
     getColor(){
         return this.serverStatus === 'Online' ? 'green' : 'red';
     }
-    serverState:boolean = true;
+    serverState:boolean = false;
     constructor(){
         // setTimeout(() => {
         //     this.serverState=false;
@@ -31,6 +39,7 @@ export class ServerComponent {
 
     onServer(){
         this.serverCondition=true;
+        this.servers.push(this.serverName);
        this.servermessage='Server is available and server name is'+this.serverName;
     }
 
